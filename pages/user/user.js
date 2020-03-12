@@ -1,44 +1,45 @@
 var app = getApp()
 Page({
-  data: {
-    hasUserInfo: false,
-		withCredentials: false,
-		userInfo: {}
-  },
-  getUserInfo: function () {
+	data: {
+		hasToken: false,
+		user: {}
+	},
+	onLoad: function () {
 		var that = this;
-		tt.getUserInfo({
-			withCredentials: that.data.withCredentials,
-			success: function (res) {
-				that.setData({
-					hasUserInfo: true,
-					userInfo: res.userInfo
-				});
-			},
-			fail () {
-				tt.showModal({
-					title: '调用 getUserInfo 失败，检查是否需要 login'
-				})
-			}
+		
+		var token = tt.getStorageSync('token');
+		console.log("token -> " + token);
+		var hasToken = token == "" ? false : true;
+		console.log('hasToken -> ' + hasToken);
+		that.setData({
+			hasToken: hasToken
 		});
-	},
-	getUserGender() {
-		// let gender = this.data.userInfo.gender;
-		let genderText = '未知';
-		switch(gender) {
-			case 0: 
-				genderText = '未知';break;
-			case 1:
-				genderText = '男';break;
-			case 2:
-				genderText = '女';break;
+		//跳转登录页面
+		if(!hasToken){
+			tt.redirectTo({
+				url: '/pages/login/login'
+			});
 		}
-		return genderText;
+		//获取用户信息
+		that.getUserInfo();
 	},
-  clear: function () {
-    this.setData({
-      hasUserInfo: false,
-      userInfo: {}
-    })
-  }
+	getUserInfo: function(){
+		var that = this;
+		
+		var userId = tt.getStorageSync('userId');
+		console.log("userId -> " + userId);
+
+		var url = app.globalData.url + '/user/info/'+userId;
+		app.request(
+			'GET', url, null,
+			(res) => {
+				var user = res.data.data;
+				tt.setStorageSync('user', user);
+				//设置data
+				that.setData({
+					user: user
+				});
+			}
+		);
+	}
 })

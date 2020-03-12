@@ -4,23 +4,43 @@
     <view class="page-section page-section-space">
       <view class="page-body-info">
         <view class="page-body-title">用户信息</view>
-        <block wx:if="{{hasUserInfo === false}}">
-          <text class="page-body-text">未获取</text>
-        </block>
-        <block wx:if="{{hasUserInfo === true}}">
-          <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
-          <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-          <text class="userinfo-nickname">
-            {{ userInfo.gender === 0 ? '未知' : (userInfo.gender === 1 ? '男' : '女') }} {{userInfo.city || '--市'}}/{{userInfo.province || '--省'}}/{{userInfo.country
-            || '--国'}}</text>
-        </block>
-      </view>
-    </view>
-    
-    <view class="page-section">
-      <view class="btn-area page-section-space">
-        <button type="primary" bindtap="getUserInfo">获取用户信息</button>
-        <button bindtap="clear">清空</button>
+        <image class="user-avatar" src="{{user.avatar}}"></image>
+        <view class="item-list">
+          <view class="item-list__page" >
+            <navigator url="nickname" class="item-navigator">
+                <view class="ttui-flex navigator-wraper">
+                    <view class="ttui-flex__item">{{user.nickname}}</view>
+                    <image class="item-list__img" src="../../image/category/setting_arrow.png"></image>
+                </view>
+            </navigator>
+          </view>
+          <view class="item-list__page" >
+            <navigator url="sex" class="item-navigator">
+                <view class="ttui-flex navigator-wraper">
+                    <view class="ttui-flex__item">
+                      {{ user.sex === 0 ? '未知' : (user.sex === 1 ? '男' : '女') }}
+                    </view>
+                    <image class="item-list__img" src="../../image/category/setting_arrow.png"></image>
+                </view>
+            </navigator>
+          </view>
+          <view class="item-list__page" >
+            <navigator url="birthday" class="item-navigator">
+                <view class="ttui-flex navigator-wraper">
+                    <view class="ttui-flex__item">{{user.birthday}}</view>
+                    <image class="item-list__img" src="../../image/category/setting_arrow.png"></image>
+                </view>
+            </navigator>
+          </view>
+          <view class="item-list__page" >
+            <navigator url="phone" class="item-navigator">
+                <view class="ttui-flex navigator-wraper">
+                    <view class="ttui-flex__item">{{user.phone}}</view>
+                    <image class="item-list__img" src="../../image/category/setting_arrow.png"></image>
+                </view>
+            </navigator>
+          </view>    
+        </view>
       </view>
     </view>
   </view>
