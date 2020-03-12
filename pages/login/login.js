@@ -6,9 +6,15 @@ Page({
 		code: null,
 		userId: null,
 		user: null,
+		page: null,
 	},
-	onLoad: function () {
+	onLoad: function (options) {
 		var that = this;
+		var page = options.page || null;
+		//设置页面来源
+		that.setData({
+			page: page
+		});
 		tt.checkSession({
 			success: function () {
 				that.setData({
@@ -36,7 +42,7 @@ Page({
 
 		if(hasToken){
 			//跳转页面
-			tt.navigateBack();
+			that.toPage();
 		}
 	},
 	//登录
@@ -47,7 +53,7 @@ Page({
 			that.ttLogin();
 		}else{
 			//跳转页面
-			tt.navigateBack();
+			that.toPage();
 		}
 	},
 	ttLogin: function(){
@@ -129,12 +135,22 @@ Page({
 					ico: 'success',
 					success: (res) => {
 						//跳转页面
-						tt.navigateBack();
+						that.toPage();
 					}
 				});
-				//跳转页面
-				tt.navigateBack();
 			}
 		);
+	},
+	//页面跳转
+	toPage: function(){
+		var that = this;
+		console.log('to page -> ' + this.data.page);
+		if(this.data.page != null){
+			tt.navigateBack();
+		}else{
+			tt.switchTab({
+				url: '/pages/user/user'
+			});
+		}
 	}
 })

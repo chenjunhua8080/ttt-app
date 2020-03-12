@@ -7,5 +7,45 @@
 		"newFeature": true
 	},
 	"appid": "tt91fde7400ed75422",
-	"projectname": "ttt"
+	"projectname": "ttt",
+	"condition": {
+		"miniprogram": {
+			"current": 1,
+			"list": [
+				{
+					"id": 0,
+					"name": "login",
+					"pathName": "pages/login/login",
+					"query": "",
+					"scene": "011001",
+					"referrerInfo": {
+						"appId": "",
+						"extraData": ""
+					}
+				},
+				{
+					"id": 1,
+					"name": "user-update",
+					"pathName": "pages/user/update/update",
+					"query": "userId=3&nickname=张三",
+					"scene": "011001",
+					"referrerInfo": {
+						"appId": "",
+						"extraData": ""
+					}
+				},
+				{
+					"id": 2,
+					"name": "user",
+					"pathName": "pages/user/user",
+					"query": "",
+					"scene": "011001",
+					"referrerInfo": {
+						"appId": "",
+						"extraData": ""
+					}
+				}
+			]
+		}
+	}
 }

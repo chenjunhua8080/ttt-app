@@ -4,7 +4,8 @@
     "pages/user/user",
     "pages/login/login",
     "pages/notify/notify",
-    "pages/message/message"
+    "pages/message/message",
+    "pages/user/update/update"
   ],
   "window":{
       "navigationBarTextStyle": "black",

@@ -1,0 +1,74 @@
+/* pages/user/phone/phone.ttss */
+.page-body-info {
+  background-color: #fff;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 0;
+  /*height: 260px;*/
+}
+
+.page-body-info text {
+  display: block;
+
+}
+
+.user-avatar {
+  border-radius: 128rpx;
+  display: inline-block;
+  width: 128rpx;
+  height: 128rpx;
+}
+.user-nickname {
+  margin-top: 20rpx;
+  font-size: 38rpx;
+  line-height: 1;
+}
+
+.page-body-text {
+  padding: 0 15px;
+}
+.long-word {
+  word-break: break-all;
+  padding-left: 6px;
+}
+.ttui-autoheight {
+  height: auto;
+  min-height: 24px;
+}
+
+
+/**
+* 修改表单
+**/
+.item-list{
+  margin-top: 30px;
+}
+.item-list__page {
+    transform: translateY(-50%);
+}
+
+.item-list__page:last-child {
+    border-bottom: none;
+}
+.navigator-wraper {
+    padding: 11px 15px 11px 0;
+    border-bottom: 1px solid #f8f8f8;
+}
+.item-navigator {
+    font-size: 16px;
+    color: #222222;
+    padding-left: 15px;
+}
+
+.item-title__img {
+    width: 30px;
+    height: 30px;
+}
+.item-list__img {
+    width: 48rpx;
+    height: 48rpx;
+    display: inline-block;
+}
+.ttui-flex {
+    align-items:center;
+}

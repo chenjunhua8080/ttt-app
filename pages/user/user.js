@@ -2,11 +2,13 @@ var app = getApp()
 Page({
 	data: {
 		hasToken: false,
-		user: {}
+		user: {},
+		update: [
+			'nickname','sex','birthday','phone'
+		]
 	},
 	onLoad: function () {
-		var that = this;
-		
+		var that = this;	
 		var token = tt.getStorageSync('token');
 		console.log("token -> " + token);
 		var hasToken = token == "" ? false : true;
@@ -16,12 +18,10 @@ Page({
 		});
 		//跳转登录页面
 		if(!hasToken){
-			tt.redirectTo({
+			tt.navigateTo({
 				url: '/pages/login/login'
 			});
 		}
-		//获取用户信息
-		that.getUserInfo();
 	},
 	getUserInfo: function(){
 		var that = this;
@@ -41,5 +41,10 @@ Page({
 				});
 			}
 		);
-	}
+	},
+	onShow: function() {
+		console.log("onShow...");
+		//获取用户信息
+		this.getUserInfo();
+	},
 })
