@@ -1,3 +1,4 @@
+const util = require("../../util/util.js")
 var app = getApp()
 Page({
 	data: {
@@ -34,6 +35,7 @@ Page({
 			'GET', url, null,
 			(res) => {
 				var user = res.data.data;
+				user.birthday = util.format(user.birthday,'yyyy-MM-dd');
 				tt.setStorageSync('user', user);
 				//设置data
 				that.setData({

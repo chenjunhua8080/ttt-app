@@ -5,7 +5,7 @@ const date = new Date();
 const years = [];
 const months = [];
 const days = [];
-for (let i = 1990; i <= date.getFullYear(); i++) {
+for (let i = 1970; i <= date.getFullYear(); i++) {
   years.push(i);
 }
 for (let i = 1; i <= 12; i++) {
@@ -28,7 +28,7 @@ Page({
     month: 1,
     days: days,
     day: 1,
-    value: [0, 0, 0]
+    value: [19, 0, 0]
   },
   onLoad: function (options) {
     console.log(options);
@@ -41,6 +41,20 @@ Page({
       birthday: options.birthday||null,
       phone: options.phone||null,
     });
+
+    //设置时间选择器
+    var birthday = that.data.birthday;
+    if(birthday!=null){
+      var y = util.format(birthday,'yyyy');
+      y = util.getIndex(years,y);
+      var m = util.format(birthday,'MM');
+      m = util.getIndex(months,m);
+      var d = util.format(birthday,'dd');
+      d = util.getIndex(days,d);
+      that.setData({
+        value: [y,m,d]
+      });
+    }
   },
   formSubmit: function(e) {
     console.log(e);
@@ -50,7 +64,7 @@ Page({
       id: that.data.userId,
 			nickname: e.detail.value.nickname,
 			sex: e.detail.value.sex,
-      birthday: that.data.birthday,
+      birthday: util.format(that.data.birthday,'yyyy-MM-dd HH:mm:ss'),
       phone: e.detail.value.phone,
 		};
 		app.request(
@@ -68,8 +82,9 @@ Page({
       month: this.data.months[val[1]],
       day: this.data.days[val[2]]
     });
+    var date = util.format(this.data.year + '-'+ this.data.month + '-' + this.data.day,'yyyy-MM-dd HH:mm:ss');
     this.setData({
-      birthday: this.data.year + '-'+ util.addzero(this.data.month,2) + '-' + util.addzero(this.data.day,2)
+      birthday: date
     });
   }
 })

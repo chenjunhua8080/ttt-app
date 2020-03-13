@@ -1,5 +1,5 @@
 <view class="container">
-  <view class="page-body">
+  <view class="page-body page-body-info">
     <form catchsubmit="formSubmit" catchreset="formReset">
 
       <!-- 性别 -->
@@ -18,6 +18,8 @@
           <view class="page-cell page-cell_input">
             <view class="page-cell__bd">
               <input
+                auto-focus
+                focus=true
                 class="page-input"
                 name="nickname"
                 placeholder="新的昵称"
@@ -35,6 +37,7 @@
         <view class="page-cell page-cell_input">
           <view class="page-cell__bd">
             <input
+              focus=true
               class="page-input"
               name="phone"
               placeholder="新的手机号"
