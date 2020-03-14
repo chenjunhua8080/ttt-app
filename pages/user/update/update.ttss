@@ -16,6 +16,14 @@
 
 }
 
+.user-avatar {
+  border-radius: 128rpx;
+  border:solid 1px lightcyan;
+  display: inline-block;
+  width: 128rpx;
+  height: 128rpx;
+}
+
 .user-nickname {
   margin-top: 20rpx;
   font-size: 38rpx;

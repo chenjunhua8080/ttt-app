@@ -2,6 +2,9 @@
  * 时间格式化
  */
 function format(time, reg) {
+  if(time == null){
+    return null;
+  }
   const date = typeof time === 'string' ? new Date(time) : time
   const map = {}
   map.yyyy = date.getFullYear()

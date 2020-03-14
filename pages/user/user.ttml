@@ -3,10 +3,11 @@
 
     <view class="page-section page-section-space">
       <view class="page-body-info">
-        <!-- 头像 -->        
-        <image class="user-avatar" src="{{user.avatar}}"></image>
-        
         <!-- 更新字段 -->
+        <!-- 头像 -->     
+        <navigator url="update/update?userId={{user.id}}&avatar={{user.avatar}}" class="item-navigator">   
+          <image class="user-avatar" src="{{user.avatar}}"></image>
+        </navigator>
         <view class="item-list">
           <view class="item-list__page">
             <navigator url="update/update?userId={{user.id}}&nickname={{user.nickname}}" class="item-navigator">

@@ -42,5 +42,49 @@ App({
 				});
       }
     })
+  },
+  //上传文件
+  upload(url, filePath, success){
+    var task=tt.uploadFile({
+      url: url,
+      filePath: filePath,
+      name: 'multipartFile',
+      header: {
+        'token': tt.getStorageSync('token')
+      },
+      success: function(res) {
+        res.data = JSON.parse(res.data);
+        tt.hideLoading();
+        console.log('上传结果 -> ');
+        console.log(res);
+        if(res.data.code == 0){
+          tt.showToast({
+            title: '上传成功',
+            icon: 'success'        
+          })
+          success(res);
+				}else{
+          console.log('上传失败 -> ' +res.data.msg);
+          console.log(res);
+					tt.showToast({
+						title: res.data.msg,
+						icon: 'fail'
+					});
+				}
+      },
+      fail: function({errMsg}) {
+        tt.hideLoading();
+        tt.showToast({
+          icon: 'none',
+          title: '上传失败'
+        })
+      }
+    });
+    //上传进度
+    task.onProgressUpdate(res => {
+      tt.showLoading({
+        title: '上传中' + res.progress + '%'
+      });
+    });
   }
 })

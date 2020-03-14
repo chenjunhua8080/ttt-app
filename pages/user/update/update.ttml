@@ -1,6 +1,11 @@
 <view class="container">
   <view class="page-body page-body-info">
     <form catchsubmit="formSubmit" catchreset="formReset">
+      <!-- 头像 -->
+      <view class="page-section page-section-gap" tt:if="{{avatar != null}}">
+        <view class="page-section-title">头像</view>
+        <image bindtap="changeAvatar" class="user-avatar" src="{{avatar}}"></image>
+      </view>
 
       <!-- 性别 -->
       <view class="page-section page-section-gap" tt:if="{{sex != null}}">

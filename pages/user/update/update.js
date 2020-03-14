@@ -17,6 +17,7 @@ for (let i = 1; i <= 31; i++) {
 Page({
   data: {
     userId: null,
+    avatar: null,
     nickname: null,
     sex: null,
     birthday: null,
@@ -36,6 +37,7 @@ Page({
     //设置页面参数
     that.setData({
       userId: options.userId||null,
+      avatar: options.avatar||null,
       nickname: options.nickname||null,
       sex: options.sex||null,
       birthday: options.birthday||null,
@@ -62,9 +64,10 @@ Page({
 		var url = app.globalData.url + '/user/update';
 		var data = {
       id: that.data.userId,
+      avatar: that.data.avatar,
 			nickname: e.detail.value.nickname,
 			sex: e.detail.value.sex,
-      birthday: util.format(that.data.birthday,'yyyy-MM-dd HH:mm:ss'),
+      birthday: util.format(that.data.birthday,'yyyy-MM-dd HH:mm:ss')||undefined,
       phone: e.detail.value.phone,
 		};
 		app.request(
@@ -85,6 +88,42 @@ Page({
     var date = util.format(this.data.year + '-'+ this.data.month + '-' + this.data.day,'yyyy-MM-dd HH:mm:ss');
     this.setData({
       birthday: date
+    });
+  },
+  //换头像
+  changeAvatar: function(){
+    var that = this;
+    //选择文件
+    tt.chooseImage({
+      sourceType: ['camera', 'album'],
+      count: 1,
+      success (res) {
+        console.log('选择文件 -> ');
+        console.log(res);
+        var filePath = res.tempFilePaths[0];
+        var url = app.globalData.url + '/system/upload';
+        app.upload(
+          url,filePath,
+          (res) => {
+            that.setData({
+              avatar: res.data.data
+            });
+          }
+        );
+      },
+      fail (res) {
+        tt.showToast({
+          title: res.errMsg,
+        });
+      }
+    });
+  },
+  //预览
+  previewImage: function (e) {
+    var current = e.target.dataset.src;
+    tt.previewImage({
+      current: current,
+      urls: this.data.imageList
     });
   }
 })

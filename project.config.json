@@ -10,7 +10,7 @@
 	"projectname": "ttt",
 	"condition": {
 		"miniprogram": {
-			"current": 1,
+			"current": 2,
 			"list": [
 				{
 					"id": 0,
@@ -27,7 +27,7 @@
 					"id": 1,
 					"name": "user-update",
 					"pathName": "pages/user/update/update",
-					"query": "userId=3&nickname=张三",
+					"query": "userId=3&avatar=http://sf1-ttcdn-tos.pstatp.com/img/mosaic-legacy/3796/2975850990~120x256.image",
 					"scene": "011001",
 					"referrerInfo": {
 						"appId": "",
@@ -38,6 +38,17 @@
 					"id": 2,
 					"name": "user",
 					"pathName": "pages/user/user",
+					"query": "",
+					"scene": "011001",
+					"referrerInfo": {
+						"appId": "",
+						"extraData": ""
+					}
+				},
+				{
+					"id": 3,
+					"name": "image",
+					"pathName": "pages/image/image",
 					"query": "",
 					"scene": "011001",
 					"referrerInfo": {
