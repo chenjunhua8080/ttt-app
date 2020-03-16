@@ -1,7 +1,7 @@
 App({
   //设置全局请求URL
   globalData:{
-    url:'http://127.0.0.1:8058',
+    url:'http://192.168.1.76:8058',
   },
   /**
   * 封装tt.request请求

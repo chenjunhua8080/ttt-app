@@ -16,60 +16,74 @@ for (let i = 1; i <= 31; i++) {
 }
 Page({
   data: {
-    userId: null,
-    avatar: null,
-    nickname: null,
-    sex: null,
-    birthday: null,
-    phone: null,
-    //时间
+    //时间组件
     years: years,
     year: 1990,
     months: months,
     month: 1,
     days: days,
     day: 1,
-    value: [19, 0, 0]
+    value: [20, 0, 0],
+
+    //更新字段
+    updateFields: [
+			'avatar','nickname','sex','birthday','phone'
+		],
+    field: null,
+    user: null,
   },
   onLoad: function (options) {
     console.log(options);
     var that = this;
     //设置页面参数
     that.setData({
-      userId: options.userId||null,
-      avatar: options.avatar||null,
-      nickname: options.nickname||null,
-      sex: options.sex||null,
-      birthday: options.birthday||null,
-      phone: options.phone||null,
+      field: options.field,
+      user: tt.getStorageSync('user')
     });
-
-    //设置时间选择器
-    var birthday = that.data.birthday;
-    if(birthday!=null){
-      var y = util.format(birthday,'yyyy');
-      y = util.getIndex(years,y);
-      var m = util.format(birthday,'MM');
-      m = util.getIndex(months,m);
-      var d = util.format(birthday,'dd');
-      d = util.getIndex(days,d);
-      that.setData({
-        value: [y,m,d]
-      });
+    if(options.field==that.data.updateFields[3]){
+      var user = that.data.user;
+      var birthday = user.birthday;
+      if(birthday != null){
+        var year = util.format(birthday,'yyyy');
+        var month = util.format(birthday,'MM');
+        var day = util.format(birthday,'dd');
+        this.setData({
+          year: year,
+          month: month,
+          day: day,
+          value: [
+            util.getIndex(that.data.years,year),
+            util.getIndex(that.data.months,month),
+            util.getIndex(that.data.days,day)
+          ]
+        });
+      }
     }
   },
   formSubmit: function(e) {
     console.log(e);
     var that = this;
 		var url = app.globalData.url + '/user/update';
-		var data = {
-      id: that.data.userId,
-      avatar: that.data.avatar,
-			nickname: e.detail.value.nickname,
-			sex: e.detail.value.sex,
-      birthday: util.format(that.data.birthday,'yyyy-MM-dd HH:mm:ss')||undefined,
-      phone: e.detail.value.phone,
-		};
+    var user = that.data.user;
+    user.phone = null;
+    var fields = that.data.updateFields;
+    switch(that.data.field){
+      case fields[1]:
+        user.nickname=e.detail.value.nickname;
+        break;
+      case fields[2]:
+        user.sex=e.detail.value.sex;
+        break;
+      case fields[4]:
+        user.phone=e.detail.value.phone;
+        break;
+    }
+    var date = util.format(user.birthday,'yyyy-MM-dd HH:mm:ss');
+    user.birthday = date;
+    this.setData({
+      user: user
+    });
+		var data = this.data.user;
 		app.request(
 			'POST', url, data,
 			(res) => {
@@ -86,8 +100,10 @@ Page({
       day: this.data.days[val[2]]
     });
     var date = util.format(this.data.year + '-'+ this.data.month + '-' + this.data.day,'yyyy-MM-dd HH:mm:ss');
+    var user = this.data.user;
+    user.birthday = date;
     this.setData({
-      birthday: date
+      user: user
     });
   },
   //换头像
@@ -105,8 +121,10 @@ Page({
         app.upload(
           url,filePath,
           (res) => {
+            var user = that.data.user;
+            user.avatar = res.data.data;
             that.setData({
-              avatar: res.data.data
+              user: user
             });
           }
         );

@@ -10,7 +10,7 @@
 	"projectname": "ttt",
 	"condition": {
 		"miniprogram": {
-			"current": 2,
+			"current": 1,
 			"list": [
 				{
 					"id": 0,
@@ -27,7 +27,7 @@
 					"id": 1,
 					"name": "user-update",
 					"pathName": "pages/user/update/update",
-					"query": "userId=3&avatar=http://sf1-ttcdn-tos.pstatp.com/img/mosaic-legacy/3796/2975850990~120x256.image",
+					"query": "field=sex",
 					"scene": "011001",
 					"referrerInfo": {
 						"appId": "",

@@ -4,25 +4,12 @@ Page({
 	data: {
 		hasToken: false,
 		user: {},
-		update: [
-			'nickname','sex','birthday','phone'
+		updateFields: [
+			'avatar','nickname','sex','birthday','phone'
 		]
 	},
 	onLoad: function () {
-		var that = this;	
-		var token = tt.getStorageSync('token');
-		console.log("token -> " + token);
-		var hasToken = token == "" ? false : true;
-		console.log('hasToken -> ' + hasToken);
-		that.setData({
-			hasToken: hasToken
-		});
-		//跳转登录页面
-		if(!hasToken){
-			tt.navigateTo({
-				url: '/pages/login/login'
-			});
-		}
+		//onLoad
 	},
 	getUserInfo: function(){
 		var that = this;
@@ -45,8 +32,22 @@ Page({
 		);
 	},
 	onShow: function() {
-		console.log("onShow...");
-		//获取用户信息
-		this.getUserInfo();
+		var that = this;	
+		var token = tt.getStorageSync('token');
+		console.log("token -> " + token);
+		var hasToken = token == "" ? false : true;
+		console.log('hasToken -> ' + hasToken);
+		that.setData({
+			hasToken: hasToken
+		});
+		//跳转登录页面
+		if(!hasToken){
+			tt.navigateTo({
+				url: '/pages/login/login'
+			});
+		}else{
+			//获取用户信息
+			this.getUserInfo();
+		}
 	},
 })

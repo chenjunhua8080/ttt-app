@@ -5,12 +5,12 @@
       <view class="page-body-info">
         <!-- 更新字段 -->
         <!-- 头像 -->     
-        <navigator url="update/update?userId={{user.id}}&avatar={{user.avatar}}" class="item-navigator">   
+        <navigator url="update/update?field={{updateFields[0]}}" class="item-navigator">   
           <image class="user-avatar" src="{{user.avatar}}"></image>
         </navigator>
         <view class="item-list">
           <view class="item-list__page">
-            <navigator url="update/update?userId={{user.id}}&nickname={{user.nickname}}" class="item-navigator">
+            <navigator url="update/update?field={{updateFields[1]}}" class="item-navigator">
                 <view class="ttui-flex navigator-wraper">
                     <view class="page-section-title">昵称</view>
                     <view class="ttui-flex__item">{{user.nickname}}</view>
@@ -19,7 +19,7 @@
             </navigator>
           </view>    
           <view class="item-list__page">
-            <navigator url="update/update?userId={{user.id}}&sex={{user.sex}}" class="item-navigator">
+            <navigator url="update/update?field={{updateFields[2]}}" class="item-navigator">
                 <view class="ttui-flex navigator-wraper">
                     <view class="page-section-title">性别</view>
                     <view class="ttui-flex__item">{{user.sex==1?'男':user.sex==2?'女':'未知'}}</view>
@@ -28,19 +28,19 @@
             </navigator>
           </view> 
           <view class="item-list__page">
-            <navigator url="update/update?userId={{user.id}}&birthday={{user.birthday}}" class="item-navigator">
+            <navigator url="update/update?field={{updateFields[3]}}" class="item-navigator">
                 <view class="ttui-flex navigator-wraper">
                     <view class="page-section-title">生日</view>
-                    <view class="ttui-flex__item">{{user.birthday}}</view>
+                    <view class="ttui-flex__item">{{user.birthday==null?'填写生日才可以匹配哦~':user.birthday}}</view>
                     <image class="item-list__img" src="../../image/category/setting_arrow.png"></image>
                 </view>
             </navigator>
           </view> 
           <view class="item-list__page">
-            <navigator url="update/update?userId={{user.id}}&phone={{user.phone}}" class="item-navigator">
+            <navigator url="update/update?field={{updateFields[4]}}" class="item-navigator">
                 <view class="ttui-flex navigator-wraper">
                     <view class="page-section-title">手机号</view>
-                    <view class="ttui-flex__item">{{user.phone}}</view>
+                    <view class="ttui-flex__item">{{user.phone==null?'=> 戳我绑定手机 <=':user.phone}}</view>
                     <image class="item-list__img" src="../../image/category/setting_arrow.png"></image>
                 </view>
             </navigator>

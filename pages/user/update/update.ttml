@@ -2,22 +2,13 @@
   <view class="page-body page-body-info">
     <form catchsubmit="formSubmit" catchreset="formReset">
       <!-- 头像 -->
-      <view class="page-section page-section-gap" tt:if="{{avatar != null}}">
+      <view class="page-section page-section-gap" tt:if="{{field == updateFields[0]}}">
         <view class="page-section-title">头像</view>
-        <image bindtap="changeAvatar" class="user-avatar" src="{{avatar}}"></image>
-      </view>
-
-      <!-- 性别 -->
-      <view class="page-section page-section-gap" tt:if="{{sex != null}}">
-        <view class="page-section-title">性别</view>
-        <radio-group name="sex">
-          <label><radio value="1" checked="{{sex == 1}}"/>男</label>
-          <label><radio value="2" checked="{{sex == 2}}"/>女</label>
-        </radio-group>
+        <image bindtap="changeAvatar" class="user-avatar" src="{{user.avatar}}"></image>
       </view>
 
       <!-- 昵称 -->
-      <view class="page-section" tt:if="{{nickname != null}}">
+      <view class="page-section" tt:if="{{field == updateFields[1]}}">
         <view class="page-section-title">昵称</view>
         <view class="page-cells page-cells_after-title">
           <view class="page-cell page-cell_input">
@@ -28,54 +19,67 @@
                 class="page-input"
                 name="nickname"
                 placeholder="新的昵称"
-                value="{{nickname}}"
+                value="{{user.nickname}}"
               />
             </view>
           </view>
         </view>
       </view>
 
+      <!-- 性别 -->
+      <view class="page-section page-section-gap" tt:if="{{field == updateFields[2]}}">
+        <view class="page-section-title">性别</view>
+        <radio-group name="sex">
+          <label><radio value="1" checked="{{user.sex == 1}}"/>男</label>
+          <label><radio value="2" checked="{{user.sex == 2}}"/>女</label>
+        </radio-group>
+      </view>
+        
+      <!-- 生日 -->
+      <view class="page-section" tt:if="{{field == updateFields[3]}}">
+        <view class="page-section-title">生日</view>
+        <view>
+          <view class="page-cells" style="text-align: center;" tt:if="{{year != null}}">
+            {{year}}年{{month}}月{{day}}日
+          </view>
+          <picker-view
+            style="height: 750rpx"
+            value="{{value}}"
+            bindchange="bindChange"
+          >
+            <picker-view-column style="text-align: center;">
+              <view tt:for="{{years}}">{{item}}年</view>
+            </picker-view-column>
+            <picker-view-column style="text-align: center;">
+              <view tt:for="{{months}}">{{item}}月</view>
+            </picker-view-column>
+            <picker-view-column style="text-align: center;">
+              <view tt:for="{{days}}">{{item}}日</view>
+            </picker-view-column>
+          </picker-view>
+        </view>
+      </view>
+      
       <!-- 手机号 -->
-      <view class="page-section" tt:if="{{phone != null}}">
-      <view class="page-section-title">手机号</view>
-      <view class="page-cells page-cells_after-title">
-        <view class="page-cell page-cell_input">
-          <view class="page-cell__bd">
-            <input
-              focus=true
-              class="page-input"
-              name="phone"
-              placeholder="新的手机号"
-              value="{{phone=='null'?'':phone}}"
-            />
+      <view class="page-section" tt:if="{{field == updateFields[4]}}">
+        <view class="page-section-title">手机号</view>
+        <view class="page-cells page-cells_after-title">
+          <view class="page-cell page-cell_input">
+            <view class="page-cell__bd">
+              <input
+                focus=true
+                auto-focus
+                class="page-input"
+                name="phone"
+                placeholder="新的手机号"
+                value="{{user.phone==null?'':user.phone}}"
+              />
+            </view>
           </view>
         </view>
       </view>
-    </view>
 
-    <!-- 生日 -->
-    <view class="page-section" tt:if="{{birthday != null}}">
-      <view class="page-section-title">生日</view>
-      <view>
-        <view class="page-cells" style="text-align: center;">{{year}}年{{month}}月{{day}}日</view>
-        <picker-view
-          style="height: 750rpx"
-          value="{{value}}"
-          bindchange="bindChange"
-        >
-          <picker-view-column style="text-align: center;">
-            <view tt:for="{{years}}">{{item}}年</view>
-          </picker-view-column>
-          <picker-view-column style="text-align: center;">
-            <view tt:for="{{months}}">{{item}}月</view>
-          </picker-view-column>
-          <picker-view-column style="text-align: center;">
-            <view tt:for="{{days}}">{{item}}日</view>
-          </picker-view-column>
-        </picker-view>
-      </view>
-    </view>
-
+      <!-- 按钮 -->
       <view class="btn-area">
         <button type="primary" formType="submit">提交</button>
         <!--<button formType="reset">清空</button>-->
