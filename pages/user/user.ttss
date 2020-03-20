@@ -70,3 +70,8 @@
 .ttui-flex {
     align-items:center;
 }
+
+.address {
+  margin: 20px;
+  align-items:center;
+}

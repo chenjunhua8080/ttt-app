@@ -29,17 +29,12 @@ Page({
 		});
 		var token = tt.getStorageSync('token');
 		console.log("token -> " + token);
-		var hasToken = token == "" ? false : true;
+		var hasToken = (token == null||token == "") ? false : true;
 		console.log(hasToken);
 		that.setData({
 			hasToken: hasToken
 		});
-		var userId = tt.getStorageSync('userId');
-		console.log("userId -> " + userId);
-		that.setData({
-			userId: userId
-		});
-
+		
 		if(hasToken){
 			//跳转页面
 			that.toPage();
@@ -50,7 +45,20 @@ Page({
 		var that = this;
 		if(!that.data.hasToken){
 			//授权登录
-			that.ttLogin();
+			that.ttLogin().then(isSuccess => {
+				if (isSuccess == 'success') {
+					//授权信息
+					that.getUserInfo().then(isSuccess => {
+						//授权位置
+						that.getLocation().then(isSuccess => {
+							if (isSuccess == 'success') {
+								//系统登录
+								that.sysLogin();
+							}
+						});
+					})
+				}
+			});
 		}else{
 			//跳转页面
 			that.toPage();
@@ -58,67 +66,76 @@ Page({
 	},
 	ttLogin: function(){
 		var that = this;
-		tt.login({
-			success: function (res) {
-				console.log('tt.login -> ');
-				console.log(res);
-				var code = res.code;
-				if (res.code) {
-					//设置data
-					that.setData({
-						hasLogin: true,
-						code: res.code
+		return new Promise(function(resolve, reject) {
+			tt.login({
+				success: function (res) {
+					console.log('tt.login -> ');
+					console.log(res);
+					var code = res.code;
+					if (res.code) {
+						//设置data
+						that.setData({
+							hasLogin: true,
+							code: res.code
+						});
+					} else {
+						tt.showModal({
+							title: '本地接口调用成功，但登录失败了'
+						});
+					}
+					resolve('success');
+				},
+				fail: function (res) {
+					tt.showToast({
+						title: '授权登录失败', // 内容
+						icon: 'fail'
 					});
-					//获取信息
-					that.getUserInfo(code);
-				} else {
-					tt.showModal({
-						title: '本地接口调用成功，但登录失败了'
-					});
+					resolve('success');
 				}
-			},
-			fail: function () {
-				tt.showModal({
-					title: '调用登录接口失败'
-				});
-			}
-		});
+			});
+		})
 	},
 	//获取用户信息
-	getUserInfo: function(code){
+	getUserInfo: function(){
 		var that = this;
-		tt.getUserInfo({
-			success: function (res) {
-				console.log('tt.getUserInfo -> ');
-				console.log(res);
-				var user = res.userInfo;
-				//设置data
-				that.setData({
-					user: user
-				});
-				//设置缓存
-				tt.setStorageSync('user', user);
-				//系统登录
-				that.sysLogin(code,user);
-			},
-			fail: function (res){
-				console.log(res)
-				tt.showToast({
-				  title: '获取用户信息失败', // 内容
-				  icon: 'fail'
-				});
-			}
-		});
+		return new Promise(function(resolve, reject) {
+			tt.getUserInfo({
+				success: function (res) {
+					console.log('tt.getUserInfo -> ');
+					console.log(res);
+					var user = res.userInfo;
+					//设置data
+					that.setData({
+						user: user
+					});
+					resolve('success');
+				},
+				fail: function (res){
+					console.log(res)
+					tt.showToast({
+						title: '获取用户信息失败', // 内容
+						icon: 'fail'
+					});
+					resolve('fail');
+				}
+			});
+		})
 	},
 	//系统登录
-	sysLogin: function(code,user){
+	sysLogin: function(){
 		var that = this;
+		var code = this.data.code;
+		var user = this.data.user;
+		var location = tt.getStorageSync('location');
+		console.log(`location -> ${location}`);
 		var url = app.globalData.url + '/user/login';
 		var data = {
 			code: code,
 			nickname: user.nickName,
 			avatar: user.avatarUrl,
-			sex: user.gender
+			sex: user.gender,
+			lng: location.lng,
+			lat: location.lat,
 		};
 		app.request(
 			'POST', url, data,
@@ -152,5 +169,11 @@ Page({
 				url: '/pages/user/user'
 			});
 		}
+	},
+	//获取位置
+	getLocation: function(){
+  		return new Promise(function(resolve, reject) {
+			app.getLocation((lng,lat)=>{resolve('success');});
+		})
 	}
 })

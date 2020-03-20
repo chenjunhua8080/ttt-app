@@ -48,6 +48,12 @@
         </view>
         <!-- 更新字段 end -->
 
+        <!-- 位置 -->
+        <view class="item-list address">
+          <view class="page-section-title">当前位置</view>
+          <view class="page-section-title">{{user.address.detail}}</view>
+        </view> 
+
       </view>
     </view>
   </view>
