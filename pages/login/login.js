@@ -1,3 +1,5 @@
+const util = require("../../util/util.js")
+
 var app = getApp()
 Page({
 	data: {
@@ -11,6 +13,7 @@ Page({
 	onLoad: function (options) {
 		var that = this;
 		var page = options.page || null;
+		console.log(`from page -> ${page}`)
 		//设置页面来源
 		that.setData({
 			page: page
@@ -40,7 +43,9 @@ Page({
 			that.toPage();
 		}
 	},
-	//登录
+	/**
+	 * 登录事件
+	 */
 	login: function () {
 		var that = this;
 		if(!that.data.hasToken){
@@ -48,14 +53,26 @@ Page({
 			that.ttLogin().then(isSuccess => {
 				if (isSuccess == 'success') {
 					//授权信息
-					that.getUserInfo().then(isSuccess => {
-						//授权位置
-						that.getLocation().then(isSuccess => {
-							if (isSuccess == 'success') {
-								//系统登录
-								that.sysLogin();
-							}
-						});
+					that.ttGetUserInfo().then(isSuccess => {
+						if (isSuccess == 'success') {
+							//授权位置
+							that.getLocation().then(isSuccess => {
+								if (isSuccess == 'success') {
+									//登录系统
+									that.sysLogin().then(isSuccess => {
+										if (isSuccess == 'success') {
+											//查询用户信息
+											that.sysGetUserInfo().then(isSuccess => {
+												if (isSuccess == 'success') {
+													//页面跳转
+													that.toPage();
+												}
+											});
+										}
+									});
+								}
+							});
+						}
 					})
 				}
 			});
@@ -64,6 +81,9 @@ Page({
 			that.toPage();
 		}
 	},
+	/**
+	 * 授权登录
+	 */
 	ttLogin: function(){
 		var that = this;
 		return new Promise(function(resolve, reject) {
@@ -95,8 +115,10 @@ Page({
 			});
 		})
 	},
-	//获取用户信息
-	getUserInfo: function(){
+	/**
+	 * 授权用户信息
+	 */
+	ttGetUserInfo: function(){
 		var that = this;
 		return new Promise(function(resolve, reject) {
 			tt.getUserInfo({
@@ -121,47 +143,73 @@ Page({
 			});
 		})
 	},
-	//系统登录
+	/**
+	 * 登录系统
+	 */
 	sysLogin: function(){
 		var that = this;
-		var code = this.data.code;
-		var user = this.data.user;
-		var location = tt.getStorageSync('location');
-		console.log(`location -> ${location}`);
-		var url = app.globalData.url + '/user/login';
-		var data = {
-			code: code,
-			nickname: user.nickName,
-			avatar: user.avatarUrl,
-			sex: user.gender,
-			lng: location.lng,
-			lat: location.lat,
-		};
-		app.request(
-			'POST', url, data,
-			(res) => {
-				tt.setStorageSync('token', res.data.data.token);
-				tt.setStorageSync('userId', res.data.data.userId);
-				//设置data
-				that.setData({
-					hasToken: true,
-					userId:  res.data.data.userId
-				});
-				tt.showToast({
-					title: '登录成功',
-					ico: 'success',
-					success: (res) => {
-						//跳转页面
-						that.toPage();
-					}
-				});
-			}
-		);
+		return new Promise(function(resolve, reject) {
+			var code = that.data.code;
+			var user = that.data.user;
+			var location = tt.getStorageSync('location');
+			console.log(`location -> ${location}`);
+			var url = app.globalData.url + '/user/login';
+			var data = {
+				code: code,
+				nickname: user.nickName,
+				avatar: user.avatarUrl,
+				sex: user.gender,
+				lng: location.lng,
+				lat: location.lat,
+			};
+			app.request(
+				'POST', url, data,
+				(res) => {
+					tt.setStorageSync('token', res.data.data.token);
+					tt.setStorageSync('userId', res.data.data.userId);
+					//设置data
+					that.setData({
+						hasToken: true,
+						userId:  res.data.data.userId
+					});
+					tt.showToast({
+						title: '登录成功',
+						ico: 'success'
+					});
+					resolve('success');
+				}
+			);
+		})
 	},
-	//页面跳转
+	/**
+	 * 查询用户信息
+	 */
+	sysGetUserInfo: function(){
+		var that = this;
+		return new Promise(function(resolve, reject) {
+			var userId = tt.getStorageSync('userId');
+			var url = app.globalData.url + '/user/info/'+userId;
+			app.request(
+				'GET', url, null,
+				(res) => {
+					var user = res.data.data;
+					user.birthday = util.format(user.birthday,'yyyy-MM-dd');
+					tt.setStorageSync('user', user);
+					//设置data
+					that.setData({
+						user: user
+					});
+					resolve('success');
+				}
+			);
+		})
+	},
+	/**
+	 * 页面跳转
+	 */
 	toPage: function(){
 		var that = this;
-		console.log('to page -> ' + this.data.page);
+		console.log('to page -> ' + that.data.page);
 		if(this.data.page != null){
 			tt.navigateBack();
 		}else{
@@ -170,10 +218,16 @@ Page({
 			});
 		}
 	},
-	//获取位置
+	/**
+	 * 获取位置
+	 */
 	getLocation: function(){
   		return new Promise(function(resolve, reject) {
-			app.getLocation((lng,lat)=>{resolve('success');});
+			app.getLocation(
+				(lng, lat) => {
+					resolve('success');
+				}
+			);
 		})
 	}
 })

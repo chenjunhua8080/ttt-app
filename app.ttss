@@ -8,6 +8,13 @@ page {
     height: auto;
 }
 
+.row {
+    width: 200rpx;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 .container {
     padding-top: 48rpx;
 }
@@ -30,8 +37,8 @@ page {
 }
 
 .index-logo {
-    width: 112rpx;
-    height: 112rpx;
+    width: 200rpx;
+    height: 200rpx;
     vertical-align: bottom;
 }
 .index-desc {

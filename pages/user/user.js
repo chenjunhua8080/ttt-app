@@ -11,6 +11,9 @@ Page({
 	onLoad: function () {
 		//onLoad
 	},
+	/**
+	 * 查询用户信息
+	 */
 	getUserInfo: function(){
 		var that = this;
 		
@@ -31,6 +34,29 @@ Page({
 			}
 		);
 	},
+	/**
+	 * 更新我的位置
+	 */
+	changeLocation: function(){
+		var that = this;
+		app.getLocation(
+			(lng,lat)=>{
+				var url = app.globalData.url + '/address/update';
+				var data = {};
+				data.lng = lng;
+				data.lat = lat;
+				app.request(
+					'POST', url, data,
+					(res) => {
+						that.getUserInfo();
+					}
+				)
+			}
+		);
+	},
+	/**
+	 * 更新用户信息
+	 */
 	onShow: function() {
 		var that = this;	
 		var token = tt.getStorageSync('token');

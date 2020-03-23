@@ -1,0 +1,58 @@
+.scroll-view_H{
+  white-space: nowrap;
+  padding: 5px 0;
+  /* background-color: #5ea7f39c; */
+}
+
+.scroll-view-item{
+  height: 220rpx;
+}
+
+.scroll-view-item_H{
+    position: relative;
+    display: inline-block;
+    width: 35%;
+    height: 220rpx;
+}
+
+.user-avatar {
+  border-radius: 128rpx;
+  border:solid 1px lightcyan;
+  /* display: inline-block; */
+  width: 128rpx;
+  height: 128rpx;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
+}
+
+.user-nickname {
+  font-size: 14px;
+  line-height: 1;
+  position: absolute;
+  top: 66%;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
+}
+
+.user-distance {
+  color: red;
+  font-size: 14px;
+  line-height: 1;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
+}
+
+.row {
+  width: 200rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: center;
+}
