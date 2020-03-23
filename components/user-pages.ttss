@@ -15,6 +15,17 @@
     height: 220rpx;
 }
 
+.pair-status{
+  border-radius: 48rpx;
+  /* display: inline-block; */
+  width: 48rpx;
+  height: 48rpx;
+  position: absolute;
+  top: 0;
+  right: 10rpx;
+  box-shadow: 5px 4px 5px 0px #ccc;
+}
+
 .user-avatar {
   border-radius: 128rpx;
   border:solid 1px lightcyan;

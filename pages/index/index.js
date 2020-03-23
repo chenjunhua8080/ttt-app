@@ -1,4 +1,5 @@
 const app = getApp()
+const util = require("../../util/util.js")
 
 Page({
 	data: {
@@ -45,14 +46,19 @@ Page({
 
 		//设置收起/展开状态
 		list.forEach((item) => {
-			item.open = item.type === id ? !item.open : false;
+			if (item.type == id) {
+				item.open = !item.open
+				//加载数据
+				if (item.open) {
+					that.getPairList(id);
+				}
+			} else {
+				item.open = false;
+			}
 		});
 		this.setData({
 			list
 		});
-
-		//加载数据
-		that.getPairList(id);
 	},
 	/**
 	 * onShow
@@ -108,10 +114,15 @@ Page({
 		}
 		app.request("GET", url, data,
 			(res) => {
-				let {list} = that.data;
+				let { list } = that.data;
 				list.forEach((item) => {
 					if (item.type == type) {
-						item.pageData = res.data.data.pageData;
+						var pageData = res.data.data.pageData;
+						var list = pageData.records;
+						list.forEach((item) => {
+							item.birthday = util.format(item.birthday, 'yyyy-MM-dd');
+						});
+						item.pageData = pageData;
 					}
 				});
 				this.setData({
