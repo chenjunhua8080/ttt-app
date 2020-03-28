@@ -6,7 +6,8 @@
     "pages/notify/notify",
     "pages/message/message",
     "pages/user/update/update",
-    "pages/image/image"
+    "pages/image/image",
+    "pages/message/user/user"
   ],
   "window":{
       "navigationBarTextStyle": "black",

@@ -1,0 +1,56 @@
+<view class="container">
+	<view class="body">
+		<view class="page-section page-section-space">
+			<view class="page-body-info">
+				<!-- 头像 -->
+				<view class="item-view">
+					<image bindtap="previewImage" data-src="{{user.avatar}}" class="user-avatar" src="{{user.avatar}}"></image>
+				</view>
+				<view class="item-list">
+					<!-- 昵称 -->
+					<view class="item-list__page">
+						<view class="item-view">
+							<view class="ttui-flex view-wraper">
+								<view class="page-section-title">昵称</view>
+								<view class="ttui-flex__item">{{user.nickname}}</view>
+							</view>
+						</view>
+					</view>
+					<!-- 性别 -->
+					<view class="item-list__page">
+						<view class="item-view">
+							<view class="ttui-flex view-wraper">
+								<view class="page-section-title">性别</view>
+								<view class="ttui-flex__item">{{user.sex==1?'男':user.sex==2?'女':'未知'}}</view>
+							</view>
+						</view>
+					</view>
+					<!-- 生日 -->
+					<view class="item-list__page">
+						<view class="item-view">
+							<view class="ttui-flex view-wraper">
+								<view class="page-section-title">生日</view>
+								<view class="ttui-flex__item">{{user.birthday==null?'是一个神秘的日子':user.birthday}}</view>
+							</view>
+						</view>
+					</view>
+					<!-- 位置 -->
+					<view class="item-list__page">
+						<view class="item-view">
+							<view class="ttui-flex view-wraper">
+								<view class="page-section-title">地区</view>
+								<view tt:if="{{user.address.province != null}}" class="ttui-flex__item">{{user.address.province}}{{user.address.city}}</view>
+								<view tt:if="{{user.address.province == null}}" class="ttui-flex__item">是一个神秘的地方</view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+			<!-- 操作 -->
+			<view class="page-body-info action">
+				<button type="primary" bindtap="action" data-status = 1>接受</button>
+				<button type="default" bindtap="action" data-status = 2>拒绝</button>
+			</view>
+		</view>
+	</view>
+</view>

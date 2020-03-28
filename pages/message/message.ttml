@@ -1,5 +1,59 @@
 <!-- pages/message/message.ttml -->
-<text>pages/message/message.ttml</text>
+<view class="container">
+	<!-- 配对列表 -->
+	<view class="body body-space">
+		<view class="pair-list" tt:if="{{pairList !=null && pairList.length > 0}}">
+			<view class="
+                    category-list__item 
+                    {{pairListOpen ? 'category-list__item--open': ''}} 
+                ">
+				<view class="ttui-flex item-title" bindtap="toggleSwitch">
+					<view class="ttui-flex__item white">有人加你啦</view>
+					<image class="item-list__img" src="../../image/category/arrow.png"></image>
+				</view>
+				<view class="item-list">
+					<view class="item-list__page">
+						<view class="scroll-view-space">
+							<scroll-view class="scroll-view_H" scroll-x="true" style="width: 100%">
+								<view tt:for="{{pairList}}" class="scroll-view-item_H">
+									<image bindtap="toPage" data-page="userInfo" data-id="{{item.id}}" class="user-avatar pair-avatar" src="{{item.avatar}}"></image>
+								</view>
+							</scroll-view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<!-- 消息列表 -->
+	<view class="body body-space">
+		<view class="page-section">
+			<!-- 没有数据 -->
+			<view tt:if="{{messageList == null || messageList.total == 0}}">
+				<view class="index-desc not_pages">没有发现有缘人v_v</view>
+			</view>
 
-<!-- 引入组件 -->
-<user-pages page-data="{{list}}"></user-pages>
+			<!-- 有数据-->
+			<view class="ttui-cells message-list">
+				<view tt:for="{{messageList.records}}" class="ttui-cell message-list__item">
+					<view class="ttui-cell__hd">
+						<image class="user-avatar message-list__item__avatar" src="{{item.targetAvatar}}"></image>
+					</view>
+					<view class="ttui-cell__bd">
+						<view class="message-list__item__nickname row">{{item.targetNickname}}</view>
+						<view class="message-list__item__lastText row">{{item.lastText||''}}</view>
+					</view>
+					<view class="ttui-cell__ft">
+						<!-- <view class="message-list__item__unreadCount row">{{item.unreadCount}}</view> -->
+						<view class="message-list__item__lastTime row">{{item.lastTime||''}}</view>
+					</view>
+					<view class="ttui-cell__ft" tt:if="{{item.unreadCount!=null && item.unreadCount>0}}">
+						<view class="message-list__item__unreadCount row">{{item.unreadCount}}</view>
+						<!-- <view class="message-list__item__lastTime row">{{item.lastTime}}</view> -->
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>
+</view>

@@ -10,7 +10,7 @@
 	"projectname": "三探",
 	"condition": {
 		"miniprogram": {
-			"current": 1,
+			"current": 4,
 			"list": [
 				{
 					"id": 0,
@@ -47,9 +47,20 @@
 				},
 				{
 					"id": 3,
-					"name": "image",
-					"pathName": "pages/image/image",
+					"name": "message",
+					"pathName": "pages/message/message",
 					"query": "",
+					"scene": "011001",
+					"referrerInfo": {
+						"appId": "",
+						"extraData": ""
+					}
+				},
+				{
+					"id": 4,
+					"name": "message-user",
+					"pathName": "pages/message/user/user",
+					"query": "id=10",
 					"scene": "011001",
 					"referrerInfo": {
 						"appId": "",

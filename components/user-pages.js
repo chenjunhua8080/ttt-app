@@ -25,7 +25,8 @@ Component({
       } else {
         tt.showToast({
           title: '没有更多了',
-          icon: 'none'
+          icon: 'none',
+          duration: 500
         });
       }
     },

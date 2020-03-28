@@ -1,0 +1,79 @@
+.user-avatar {
+  border-radius: 128rpx;
+  border:solid 1px lightcyan;
+  display: inline-block;
+  width: 128rpx;
+  height: 128rpx;
+  margin: 30px 0px 50px;
+}
+.user-nickname {
+  margin-top: 20rpx;
+  font-size: 38rpx;
+  line-height: 1;
+}
+
+.action{
+    margin-top: 10px;
+}
+
+/* ############ */
+.page-body-info {
+  background-color: #fff;
+  text-align: center;
+  padding: 20px 10px;
+  /*height: 260px;*/
+}
+
+.page-body-info text {
+  display: block;
+
+}
+
+button{
+  margin-bottom: 30rpx;
+}
+
+.category-list__item {
+    margin-bottom: 10px;
+    background-color: #fff;
+    border-radius:4px;
+}
+.item-title {
+    font-size: 17px;
+    color: #222222;
+    padding: 15px;
+    height: 26px;
+    
+}
+
+.item-list__page {
+    transform: translateY(-50%);
+    padding: 11px 15px 11px 0;
+    border-bottom: 1px solid #17344c;
+}
+
+.item-list__page:last-child {
+    /* border-bottom: none; */
+}
+.navigator-wraper {
+    padding: 11px 15px 11px 0;
+    border-bottom: 1px solid #f8f8f8;
+}
+.item-navigator {
+    font-size: 16px;
+    color: #222222;
+    padding-left: 15px;
+}
+
+.item-title__img {
+    width: 30px;
+    height: 30px;
+}
+.item-list__img {
+    width: 48rpx;
+    height: 48rpx;
+    display: inline-block;
+}
+.ttui-flex {
+    align-items:center;
+}

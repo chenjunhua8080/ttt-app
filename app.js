@@ -1,7 +1,7 @@
 App({
   //设置全局请求URL
   globalData: {
-    url: 'http://192.168.1.76:8058',
+    url: 'http://169.254.246.92:8058',
   },
   /**
   * 封装tt.request请求
@@ -31,7 +31,7 @@ App({
           //token 已过期 ，到登录页面
           tt.setStorageSync('token', null);
           tt.navigateTo({
-            url: '/pages/login/login'
+            url: '/pages/login/login?page=-1'
           });
         } else {
           tt.showToast({
