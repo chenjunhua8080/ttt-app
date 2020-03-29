@@ -35,7 +35,9 @@
 
 			<!-- 有数据-->
 			<view class="ttui-cells message-list">
-				<view tt:for="{{messageList.records}}" class="ttui-cell message-list__item">
+				<view class="ttui-cell message-list__item" tt:for="{{messageList.records}}">
+					<!-- 点击问题 加个遮罩 -->
+					<view class="bindtap" bindtap="toPage" data-page="messageDetail" data-index="{{index}}"></view>
 					<view class="ttui-cell__hd">
 						<image class="user-avatar message-list__item__avatar" src="{{item.targetAvatar}}"></image>
 					</view>

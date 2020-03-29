@@ -10,7 +10,7 @@
 	"projectname": "三探",
 	"condition": {
 		"miniprogram": {
-			"current": 4,
+			"current": 6,
 			"list": [
 				{
 					"id": 0,
@@ -60,7 +60,29 @@
 					"id": 4,
 					"name": "message-user",
 					"pathName": "pages/message/user/user",
-					"query": "id=10",
+					"query": "id=10&action=relieve",
+					"scene": "011001",
+					"referrerInfo": {
+						"appId": "",
+						"extraData": ""
+					}
+				},
+				{
+					"id": 5,
+					"name": "message - detail",
+					"pathName": "pages/message/detail/detail",
+					"query": "messageId=5&targetId=10&targetNickname=一只可甜可甜&targetAvatar=http://169.254.246.92/ttt/1585398936263.png",
+					"scene": "011001",
+					"referrerInfo": {
+						"appId": "",
+						"extraData": ""
+					}
+				},
+				{
+					"id": 6,
+					"name": "notyfy",
+					"pathName": "pages/notify/notify",
+					"query": "",
 					"scene": "011001",
 					"referrerInfo": {
 						"appId": "",

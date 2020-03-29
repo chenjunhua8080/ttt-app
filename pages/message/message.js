@@ -4,8 +4,6 @@ const util = require("../../util/util.js")
 
 Page({
 	data: {
-		hasToken: false,
-		user: null,
 		pairList: null,
 		pairListOpen: false,
 		messageList: null,
@@ -21,13 +19,6 @@ Page({
 	 */
 	onShow: function () {
 		var that = this;
-		//登录检测
-		var token = tt.getStorageSync('token');
-		var hasToken = token == "" || token == null ? false : true;
-		that.setData({
-			hasToken: hasToken,
-			user: tt.getStorageSync('user')
-		});
 
 		//获取配对列表
 		that.getPairList();
@@ -123,13 +114,18 @@ Page({
 	 * 页面跳转
 	 */
 	toPage: function (e) {
+		var that = this;
 		var dataset = e.target.dataset;
 		var page = dataset.page;
 		var url;
 		if (page === 'userInfo') {
 			url = 'user/user?id=' + dataset.id;
 		} else if (page === 'messageDetail') {
-			url = 'detail/detail?id=' + dataset.id;
+			var target = that.data.messageList.records[dataset.index];
+			url = 'detail/detail?messageId=' + target.id
+			+ '&targetId=' + target.targetId
+			+ '&targetNickname=' + target.targetNickname
+			+ '&targetAvatar=' + target.targetAvatar;
 		}
 		tt.navigateTo({
 			url: url

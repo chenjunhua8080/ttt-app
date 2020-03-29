@@ -1,0 +1,66 @@
+<!-- pages/message/detail/detail.ttml -->
+<view class="container">
+	<!-- 消息列表 -->
+	<view class="body body-space">
+		<scroll-view scroll-with-animation="true" scroll-y="true" scroll-top="{{scrollTop}}" upper-threshold="10" bindscrolltoupper="onTop"
+		 class="page-section message-list">
+			<!-- 消息主体 -->
+			<view class="ttui-cells">
+				<view tt:for="{{pageData.records}}" class="ttui-cell message-list__item 
+					{{item.messageType==0?'system':(item.isSender==1?'me':'he')}}		
+					{{item.messageType!=0&&item.targetDetailId==null?'bg-red':''}}
+				">
+					<!-- 系统消息 -->
+					<block tt:if="{{item.messageType==0}}">
+						<view class="ttui-cell__bd">
+							<view class="message-list__item__lastTime">{{item.createTime||''}}</view>
+							<view class="message-list__item__lastText">{{item.content||''}}</view>
+						</view>
+					</block>
+					<!-- 用户消息 -->
+					<block tt:else>
+						<!-- 对方消息 -->
+						<block tt:if="{{item.isSender==0}}">
+							<view class="ttui-cell__hd">
+								<navigator url="../user/user?action=relieve&id={{target.id}}" class="item-navigator">
+									<image class="user-avatar message-list__item__avatar" src="{{target.avatar}}"></image>
+								</navigator>
+							</view>
+							<view class="ttui-cell__bd">
+								<view class="message-list__item__lastTime">{{item.createTime||''}}</view>
+								<view class="message-list__item__lastText">{{item.content||''}}</view>
+							</view>
+						</block>
+						<!-- 我方消息 -->
+						<block tt:elif>
+							<view class="ttui-cell__bd">
+								<view class="message-list__item__lastTime">{{item.createTime||''}}</view>
+								<view class="message-list__item__lastText">{{item.content||''}}</view>
+							</view>
+							<view class="ttui-cell__fd">
+								<image class="user-avatar message-list__item__avatar" src="{{user.avatar}}"></image>
+							</view>
+						</block>
+					</block>
+					<!-- 定位id -->
+					<view id="{{'toViewId:'+index}}"> </view>
+				</view>
+			</view>
+		</scroll-view>
+
+		<!-- 操作区域 -->
+		<view class="table action">
+			<view class="table-tr">
+				<view class="table-td">
+					<view class="textarea-wrp">
+						<textarea bindblur="bindblur" style="height: 3.5em;width:500rpx;" value="{{content}}" placeholder="" fixed="true" cursor-spacing="30"/>
+					</view>
+				</view>
+				<view class="table-td">
+					<button bindtap="sendMsg" class="mini-btn" type="primary" size="mini">发送</button>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>
+</view>

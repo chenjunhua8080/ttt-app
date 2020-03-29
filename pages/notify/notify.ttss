@@ -1,1 +1,147 @@
 /* pages/notify/notify.ttss */
+.page-body-info {
+  background-color: #fff;
+  text-align: center;
+  padding: 20px 10px;
+  /*height: 260px;*/
+}
+
+.page-body-info text {
+  display: block;
+
+}
+
+.page-body-text {
+  padding: 0 15px;
+}
+.long-word {
+  word-break: break-all;
+  padding-left: 6px;
+}
+.ttui-autoheight {
+  height: auto;
+  min-height: 24px;
+}
+
+
+/**
+* 修改表单
+**/
+
+.item-list__page {
+    transform: translateY(-50%);
+}
+
+.item-list__page:last-child {
+    border-bottom: none;
+}
+.navigator-wraper {
+    padding: 11px 15px 11px 0;
+    border-bottom: 1px solid #f8f8f8;
+}
+.item-navigator {
+    font-size: 16px;
+    color: #222222;
+    padding-left: 15px;
+}
+
+.item-title__img {
+    width: 30px;
+    height: 30px;
+}
+.item-list__img {
+    width: 48rpx;
+    height: 48rpx;
+    display: inline-block;
+}
+.ttui-flex {
+    align-items:center;
+}
+.ttui-flex__item{
+    margin: 0;
+    /* height: 220rpx; */
+    /*上下左右居中*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 列表 */
+.message-list{
+    border-radius: 5px; 
+    height: 55vh;
+    margin-top: -30rpx;
+}
+.message-list__item{
+    border-bottom: none !important;
+    height: 100%;
+    margin: 5px;
+    background-color: rgb(255, 255, 255);
+    padding-left:15px;
+    border-radius: 10px;
+}
+.message-list__item__avatar{
+    border-radius: 128rpx;
+}
+.user-avatar {
+  border-radius: 128rpx;
+  border:solid 1px lightcyan;
+  /* display: inline-block; */
+  width: 128rpx;
+  height: 128rpx;
+}
+.message-list__item__lastText{
+    margin-top: 10px;
+    color: #999999;
+    font-size: 14px;
+}
+.message-list__item__lastTime{
+    /* background-color: #fff; */
+    color: #999999;
+    font-size: 14px;
+}
+.me{
+    background-color: #e0ffea;
+    /* text-align: right; */
+}
+.me .ttui-cell__bd{
+    margin-right: 15px;
+}
+.he .ttui-cell__bd{
+    margin-left: 15px;
+}
+.system{
+    text-align: center;
+    background-color: #f8f8f8;
+}
+.bg-red{
+    background-color: #ffd9d9;
+}
+.pair-list{
+    transform: rotate(90deg);
+}
+/* 列表 end */
+/* 重写 */
+.ttui-cell::before{
+    /* border-top: none; */
+}
+.ttui-cells{
+    /* background-color: #f8f8f8; */
+    padding-left:0;
+}
+.page-section{
+    margin-bottom: 0;
+}
+.page-body-info{
+    /* margin-top: 35vh; */
+    padding: 0;
+}
+.header{
+    /* position: fixed;
+    left: 50%;
+    top: 0;
+    -webkit-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);*/
+    padding: 10px 10px 0 10px; 
+}
+/* 重写 end*/

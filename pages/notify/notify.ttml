@@ -1,2 +1,71 @@
 <!-- pages/notify/notify.ttml -->
-<text>pages/notify/notify.ttml</text>
+<view class="container">
+	<!-- 系统栏目 -->
+	<view class="header header-center">
+		<view class="item-list">
+			<view class="item-list__page">
+				<navigator url="system/duty" class="item-navigator">
+					<view class="ttui-flex navigator-wraper">
+						<view class="ttui-flex__item page-section-title">免责条款</view>
+						<image class="item-list__img" src="../../image/category/setting_arrow.png"></image>
+					</view>
+				</navigator>
+			</view>
+			<view class="item-list__page">
+				<navigator url="system/feedback" class="item-navigator">
+					<view class="ttui-flex navigator-wraper">
+						<view class="ttui-flex__item page-section-title">问题反馈</view>
+						<image class="item-list__img" src="../../image/category/setting_arrow.png"></image>
+					</view>
+				</navigator>
+			</view>
+			<view class="item-list__page">
+				<navigator url="system/contact" class="item-navigator">
+					<view class="ttui-flex navigator-wraper">
+						<view class="ttui-flex__item page-section-title">联系客服</view>
+						<image class="item-list__img" src="../../image/category/setting_arrow.png"></image>
+					</view>
+				</navigator>
+			</view>
+			<view class="item-list__page">
+				<view url="system/contact" class="item-navigator">
+					<view class="ttui-flex navigator-wraper">
+						<view class="ttui-flex__item page-section-title">配对公告</view>
+						<image class="item-list__img pair-list" src="../../image/category/setting_arrow.png"></image>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+
+	<!-- 配对信息 -->
+	<view class="page-section page-section-space">
+		<view class="page-body-info">
+			<scroll-view scroll-with-animation="true" scroll-y="true" lower-threshold="20" bindscrolltolower="onBottom" class="page-section message-list">
+				<!-- <view class="page-section message-list"> -->
+				<!-- 消息主体 -->
+				<view class="ttui-cells">
+					<view tt:for="{{pageData.records}}" class="ttui-cell message-list__item">
+						<!-- 发起者 -->
+						<view class="ttui-cell__bd">
+							<image class="user-avatar message-list__item__avatar" src="{{item.sender.avatar}}"></image>
+							<view class="message-list__item__lastText">{{item.sender.nickname}}</view>
+						</view>
+
+						<!-- 连接符 -->
+						<view class="ttui-cell__bd">
+							<view class="message-list__item__lastText">&&</view>
+						</view>
+
+						<!-- 接收者 -->
+						<view class="ttui-cell__bd">
+							<image class="user-avatar message-list__item__avatar" src="{{item.recipient.avatar}}"></image>
+							<view class="message-list__item__lastText">{{item.recipient.nickname}}</view>
+						</view>
+					</view>
+				</view>
+				<!-- </view> -->
+			</scroll-view>
+		</view>
+	</view>
+</view>

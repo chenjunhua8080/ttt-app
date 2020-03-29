@@ -44,12 +44,27 @@
 							</view>
 						</view>
 					</view>
+					<!-- 渠道 -->
+					<view class="item-list__page">
+						<view class="item-view">
+							<view class="ttui-flex view-wraper">
+								<view class="page-section-title">渠道</view>
+								<view class="ttui-flex__item">{{channel[pair.channel-1]}}</view>
+							</view>
+						</view>
+					</view>
 				</view>
 			</view>
 			<!-- 操作 -->
 			<view class="page-body-info action">
-				<button type="primary" bindtap="action" data-status = 1>接受</button>
-				<button type="default" bindtap="action" data-status = 2>拒绝</button>
+				<block tt:if="{{action=='relieve'}}">
+					<button tt:if="{{pair.status==1}}" type="primary" bindtap="relieve">解除配对</button>
+					<button tt:if="{{pair.status!=1}}" type="primary" bindtap="rePair">重新配对</button>
+				</block>
+				<block tt:else>
+					<button type="primary" bindtap="action" data-status = 1>接受</button>
+					<button type="default" bindtap="action" data-status = 2>拒绝</button>
+				</block>
 			</view>
 		</view>
 	</view>

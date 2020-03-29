@@ -1,0 +1,11 @@
+/* pages/notify/system/contact.ttss */
+.wechat{
+    box-shadow: 0px 0px 10px 2px #ccc;
+    position: absolute;
+    left: 50%;
+    top: 20vh;
+    -webkit-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+    padding: 0;
+    margin: 0;
+}

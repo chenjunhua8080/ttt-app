@@ -7,7 +7,11 @@
     "pages/message/message",
     "pages/user/update/update",
     "pages/image/image",
-    "pages/message/user/user"
+    "pages/message/user/user",
+    "pages/message/detail/detail",
+    "pages/notify/system/duty",
+    "pages/notify/system/feedback",
+    "pages/notify/system/contact"
   ],
   "window":{
       "navigationBarTextStyle": "black",

@@ -1,0 +1,11 @@
+<!-- pages/notify/system/contact.ttml -->
+<view class="container">
+	<view class="header header-center">
+		<text class="index-desc">
+			充当一哈客服小哥哥
+		</text>
+		<view class="header header-center">
+			<image class="wechat" src="../../../image/wechat.png" mode="aspectFit" />
+		</view>
+	</view>
+</view>

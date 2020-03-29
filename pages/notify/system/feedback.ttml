@@ -1,0 +1,10 @@
+<!-- pages/notify/system/feedback.ttml -->
+<view class="container">
+	<view class="header header-center">
+		<view class="header header-center">
+			<text class="index-desc">
+				暂未开发
+			</text>
+		</view>
+	</view>
+</view>

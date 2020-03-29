@@ -4,7 +4,7 @@
   display: inline-block;
   width: 128rpx;
   height: 128rpx;
-  margin: 30px 0px 50px;
+  margin: 0px 0px 50rpx;
 }
 .user-nickname {
   margin-top: 20rpx;
