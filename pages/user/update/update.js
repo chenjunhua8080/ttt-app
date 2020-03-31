@@ -63,27 +63,29 @@ Page({
   formSubmit: function(e) {
     console.log(e);
     var that = this;
+    var data = {};
 		var url = app.globalData.url + '/user/update';
     var user = that.data.user;
-    user.phone = null;
     var fields = that.data.updateFields;
+    //封装参数
     switch(that.data.field){
+      case fields[0]:
+        data.avatar=user.avatar;
+        break;
       case fields[1]:
-        user.nickname=e.detail.value.nickname;
+        data.nickname=e.detail.value.nickname;
         break;
       case fields[2]:
-        user.sex=e.detail.value.sex;
+        data.sex=e.detail.value.sex;
+        break;
+      case fields[3]:
+        data.birthday=util.format(user.birthday,'yyyy-MM-dd HH:mm:ss');
         break;
       case fields[4]:
-        user.phone=e.detail.value.phone;
+        data.phone=e.detail.value.phone;
         break;
     }
-    var date = util.format(user.birthday,'yyyy-MM-dd HH:mm:ss');
-    user.birthday = date;
-    this.setData({
-      user: user
-    });
-		var data = this.data.user;
+    //发起请求	
 		app.request(
 			'POST', url, data,
 			(res) => {

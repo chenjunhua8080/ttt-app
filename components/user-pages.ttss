@@ -26,6 +26,16 @@
   box-shadow: 5px 4px 5px 0px #ccc;
 }
 
+.sex{
+  border-radius: 36rpx;
+  /* display: inline-block; */
+  width: 36rpx;
+  height: 36rpx;
+  position: absolute;
+  bottom: 0;
+  left: 15rpx;
+}
+
 .user-avatar {
   border-radius: 128rpx;
   border:solid 1px lightcyan;

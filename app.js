@@ -1,7 +1,8 @@
 App({
   //设置全局请求URL
   globalData: {
-    url: 'http://169.254.246.92:8058',
+    url: 'http://ttt.springeasy.cn',
+    // url: 'http://127.0.0.1:8058',
   },
   /**
   * 封装tt.request请求
@@ -24,6 +25,13 @@ App({
       success: function (res) {
         console.log('tt.request - >');
         console.log(res);
+        if (res.statusCode != 200) {
+          tt.showToast({
+            title: '服务器出错了![ ' + res.statusCode + ' ]',
+            icon: 'fail'
+          });
+          return;
+        }
         var code = res.data.code;
         if (code == 0) {
           success(res);

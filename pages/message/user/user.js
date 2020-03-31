@@ -7,7 +7,7 @@ Page({
     user: null,
     action: null,
     pair: null,
-    channel: ['命中注定', '专属推荐', '离我最近', '用户资料卡片']
+    channel: ['同年同月同日', '不相上下', '十万八千米以内', '用户资料卡片']
   },
   /**
    * onLoad

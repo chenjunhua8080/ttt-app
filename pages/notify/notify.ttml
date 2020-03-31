@@ -45,7 +45,11 @@
 				<!-- <view class="page-section message-list"> -->
 				<!-- 消息主体 -->
 				<view class="ttui-cells">
-					<view tt:for="{{pageData.records}}" class="ttui-cell message-list__item">
+					<!-- 没有数据 -->
+					<view tt:if="{{pageData == null || pageData.total == 0}}">
+						<view class="index-desc not_pages">没有发现有缘人v_v</view>
+					</view>
+					<view tt:else tt:for="{{pageData.records}}" class="ttui-cell message-list__item">
 						<!-- 发起者 -->
 						<view class="ttui-cell__bd">
 							<image class="user-avatar message-list__item__avatar" src="{{item.sender.avatar}}"></image>

@@ -8,16 +8,16 @@ Page({
 		list: [
 			{
 				type: '3',
-				name: '离我最近',
+				name: '十万八千米以内',
 				open: true,
 				pageData: null
 			}, {
 				type: '1',
-				name: '命中注定',
+				name: '同年同月同日',
 				pageData: null
 			}, {
 				type: '2',
-				name: '专属推荐',
+				name: '不相上下',
 				pageData: null
 			}
 		],

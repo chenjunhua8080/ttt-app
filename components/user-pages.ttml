@@ -5,6 +5,7 @@
 				<view tt:for="{{pageData.records}}" class="scroll-view-item_H">
 					<image bindtap="previewImage" class="user-avatar" src="{{item.avatar}}" data-src="{{item.avatar}}"></image>
 					<image bindtap="pair" data-index="{{index}}" class="pair-status" src="{{item.pairStatus==0?'../image/已添加.png':'../image/添加.png'}}"></image>
+					<image tt:if="{{item.sex!=0}}" class="item-list__img sex" src="../image/{{item.sex==1?'boy':'girl'}}.png"></image>
 					<view class="user-nickname row">{{item.nickname}}</view>
 					<view class="user-distance row" tt:if="{{type == 3}}">{{item.address.distance}}米</view>
 					<view class="user-distance row" tt:if="{{type != 3}}">{{item.birthday}}</view>

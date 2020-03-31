@@ -12,7 +12,7 @@
 					{{!hasToken && index != 0 ? 'not_login': ''}}
                 ">
 				<view class="ttui-flex item-title" id="{{item.type}}" bindtap="toggleSwitch">
-					<view class="ttui-flex__item">{{item.name}}</view>
+					<view class="ttui-flex__item {{item.type==1?'red':''}}">{{item.name}}</view>
 					<image class="item-list__img" src="../../image/category/arrow.png"></image>
 				</view>
 				<view class="item-list">
