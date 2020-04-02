@@ -18,8 +18,6 @@ Page({
 		var that = this;
 		
 		var userId = tt.getStorageSync('userId');
-		console.log("userId -> " + userId);
-
 		var url = app.globalData.url + '/user/info/'+userId;
 		app.request(
 			'GET', url, null,
@@ -60,9 +58,7 @@ Page({
 	onShow: function() {
 		var that = this;	
 		var token = tt.getStorageSync('token');
-		console.log("token -> " + token);
 		var hasToken = token == "" ? false : true;
-		console.log('hasToken -> ' + hasToken);
 		that.setData({
 			hasToken: hasToken
 		});

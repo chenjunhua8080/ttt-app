@@ -1,7 +1,7 @@
 App({
   //设置全局请求URL
   globalData: {
-    url: 'http://ttt.springeasy.cn',
+    url: 'https://ttt.springeasy.cn',
     // url: 'http://127.0.0.1:8058',
   },
   /**
@@ -23,9 +23,11 @@ App({
       },
       dataType: 'json',
       success: function (res) {
-        console.log('tt.request - >');
-        console.log(res);
+        // console.log('tt.request - >');
+        // console.log(res);
         if (res.statusCode != 200) {
+          console.log('tt.request fail- >');
+          console.log(res);
           tt.showToast({
             title: '服务器出错了![ ' + res.statusCode + ' ]',
             icon: 'fail'
@@ -49,7 +51,7 @@ App({
         }
       },
       fail: function (res) {
-        console.log('tt.request - >');
+        console.log('tt.request fail- >');
         console.log(res);
         tt.showToast({
           title: 'req fail',
