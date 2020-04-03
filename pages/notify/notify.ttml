@@ -6,7 +6,7 @@
 			<view class="item-list__page">
 				<navigator url="system/duty" class="item-navigator">
 					<view class="ttui-flex navigator-wraper">
-						<view class="ttui-flex__item page-section-title">免责条款</view>
+						<view class="ttui-flex__item page-section-title">免责声明</view>
 						<image class="item-list__img" src="../../image/category/setting_arrow.png"></image>
 					</view>
 				</navigator>

@@ -2,11 +2,13 @@
 <view class="container">
 	<view class="header header-center">
 		<text class="index-desc">
-			免责条款
+			免责声明
 			<br/>
-				用户在使用小程序过程中发生任何情况均与本小程序以及小程序开发者无关。
-				<br/>
-					另外，最终解释权归本小程序所有。
+			最终解释权归本小程序所有~
+			<br/>
+			温馨提示
+			<br/>
+			用户在使用过程中谨防被骗~
 		</text>
 	</view>
 </view>
