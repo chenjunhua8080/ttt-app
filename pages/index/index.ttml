@@ -1,7 +1,7 @@
 <view class="container">
 	<view class="header header-center">
 		<image class="index-logo" src="../../image/查找灰2.png"></image>
-		<view class="index-desc">好想喊一声 [ 去他妈的生活 ]</view>
+		<view class="index-desc">{{loveWords}}</view>
 	</view>
 
 	<view class="body body-space">

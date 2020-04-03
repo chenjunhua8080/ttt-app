@@ -5,6 +5,7 @@ Page({
 	data: {
 		hasToken: false,
 		user: {},
+		loveWords: 'hello word',
 		list: [
 			{
 				type: '3',
@@ -89,6 +90,11 @@ Page({
             list
         });
 		*/
+
+		//土味情话
+		that.setData({
+			loveWords: util.getLoveWords()
+		})
 
 		//获取匹配列表
 		that.getPairList(3);

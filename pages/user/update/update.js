@@ -107,16 +107,17 @@ Page({
   },
   //改变时间
   bindChange: function (e) {
+    var that = this;
     const val = e.detail.value;
-    this.setData({
-      year: this.data.years[val[0]],
-      month: this.data.months[val[1]],
-      day: this.data.days[val[2]]
+    that.setData({
+      year: that.data.years[val[0]],
+      month: that.data.months[val[1]],
+      day: that.data.days[val[2]]
     });
-    var date = util.format(this.data.year + '-' + this.data.month + '-' + this.data.day, 'yyyy-MM-dd HH:mm:ss');
-    var user = this.data.user;
+    var date = util.format(that.data.year + '-' + that.data.month + '-' + that.data.day , 'yyyy-MM-dd HH:mm:ss');
+    var user = that.data.user;
     user.birthday = date;
-    this.setData({
+    that.setData({
       user: user
     });
   },
